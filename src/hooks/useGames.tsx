@@ -12,6 +12,7 @@ export interface GameProps{
     id : number,
     name : string,
     background_image : string,
+    metacritic : number,
     parent_platforms : {platform : PlatformProps}[]
 }
 
