@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 import useData from "./useData";
+import { Genre } from "./useGenres";
 
 export interface PlatformProps {
   id: number;
@@ -18,8 +19,8 @@ export interface GameProps {
 }
 
 
-const useGames = () => {
-    const { data, error, isLoading} = useData<GameProps>('/games');
+const useGames = (genre : Genre | null) => {
+    const { data, error, isLoading} = useData<GameProps>('/games',{ params: { genres : genre?.id}}, [genre?.id]);
 
   return { data, error, isLoading };
 };
