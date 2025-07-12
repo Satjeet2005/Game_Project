@@ -1,5 +1,5 @@
-import { Button, Portal } from "@chakra-ui/react";
-import { Menu, MenuItem } from "@chakra-ui/react";
+import { Box, Button, MenuItem, Portal } from "@chakra-ui/react";
+import { Menu } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
 import { Text } from "@chakra-ui/react";
 import usePlatforms from "../hooks/usePlatforms";
@@ -23,7 +23,7 @@ const FilterGame = ({ handlePlatform,selectedPlatform } : Props) => {
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-                {data.map((d) => <Menu.Item key={d.id} onClick={() => handlePlatform(d)} cursor="pointer">{d.name}</Menu.Item>)}
+                {data.map((d) => <Menu.Item key={d.id} value={d.name}>{d.name}</Menu.Item>)}
           </Menu.Content>
         </Menu.Positioner>
       </Portal>
