@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import apiClient from '../services/api-client';
 import { CanceledError } from 'axios';
 import useData from './useData';
+import genres from '../data/genres';
 
 export interface Genre{
     id : number,
@@ -11,9 +12,8 @@ export interface Genre{
 
 
 const useGenres = () => {
-    const { data, error, isLoading} = useData<Genre>('/genres');
 
-  return { data, error, isLoading };
+  return { data : genres, error : null, isLoading: null };
 }
 
 export default useGenres

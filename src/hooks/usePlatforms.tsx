@@ -1,7 +1,5 @@
 import { PlatformProps } from './useGames';
-
-import useData from './useData'
-
+import platforms from '../data/platforms';
 interface PlatformResponse{
     count : number,
     results : PlatformProps[]
@@ -9,9 +7,8 @@ interface PlatformResponse{
 
 const usePlatforms = () => {
 
-    const { data,error,isLoading } = useData<PlatformProps>("/platforms/lists/parents");
 
-    return { data,error,isLoading } ;
+    return { data : platforms, error : null, isLoading : null } ;
 }
 
 export default usePlatforms
