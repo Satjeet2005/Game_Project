@@ -1,5 +1,6 @@
 import { Button, HStack, Switch } from "@chakra-ui/react";
 import { useColorMode } from "./ui/color-mode"
+import { Text } from "@chakra-ui/react";
 
 
 const ColorModeSwitch = () => {
@@ -8,7 +9,7 @@ const ColorModeSwitch = () => {
     <Switch.Root checked={colorMode === "dark"} onChange={toggleColorMode}>
       <Switch.HiddenInput />
       <Switch.Control />
-      <Switch.Label>{colorMode === "dark" ? "Dark Mode" : "Light Mode"}</Switch.Label>
+      <Text whiteSpace="nowrap">{colorMode === "dark" ? "Dark Mode" : "Light Mode"}</Text>
     </Switch.Root>
   )
 }
