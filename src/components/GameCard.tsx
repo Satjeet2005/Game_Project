@@ -16,8 +16,7 @@ const GameCard = ({ game }: Props) => {
       <Card.Root>
         <Image src={getImageUrl({url : game.background_image})} alt={game.name} />
         <Card.Body>
-          <Card.Title fontSize={"2xl"}>{game.name}</Card.Title>
-          <HStack justifyContent="space-between">
+          <HStack justifyContent="space-between" mb={2}>
             <PlatformIconList
               platforms={game.parent_platforms.map(
                 (plaform) => plaform.platform
@@ -25,6 +24,7 @@ const GameCard = ({ game }: Props) => {
             ></PlatformIconList>
             <CriticScore metacritic={game.metacritic}></CriticScore>
           </HStack>
+              <Card.Title fontSize={"2xl"}>{game.name}</Card.Title>
         </Card.Body>
       </Card.Root>
     </>
