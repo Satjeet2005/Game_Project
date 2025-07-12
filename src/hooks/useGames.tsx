@@ -17,6 +17,7 @@ export interface GameProps {
   background_image: string;
   metacritic: number;
   parent_platforms: { platform: PlatformProps }[];
+  rating_top : number;
 }
 
 
