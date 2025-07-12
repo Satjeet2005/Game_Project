@@ -5,9 +5,13 @@ import getImageUrl from "./services/image-url";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
+import FilterGame from "./components/FilterGame";
+import { PlatformProps } from "./hooks/useGames";
 
 function App() {
-  const [selectedGenre,setGenre] = useState<Genre | null>(null);
+  const [selectedGenre, setGenre] = useState<Genre | null>(null);
+  const [selectedPlatform,setSelectedPlatform] = useState<PlatformProps | null>(null)
+  
   return (
     <Grid
       templateAreas={{
@@ -16,18 +20,25 @@ function App() {
       }}
       templateColumns={{
         base: "1fr",
-        lg: "200px 1fr"
+        lg: "200px 1fr",
       }}
     >
       <GridItem area="nav">
         <NavBar></NavBar>
       </GridItem>
-      <GridItem area="aside" paddingX="5" display={{ base: "none", lg: "block" }}>
-        <GenreList handleClick={(genre) => setGenre(genre)}></GenreList>
+      <GridItem
+        area="aside"
+        paddingX="5"
+        display={{ base: "none", lg: "block" }}
+      >
+        <GenreList
+          handleClick={(genre) => setGenre(genre)}
+          selectedGenre={selectedGenre}
+        ></GenreList>
       </GridItem>
-      <GridItem area="main">
-        <GameGrid genre={selectedGenre}></GameGrid>
-
+      <GridItem area="main" padding={10}>
+        <FilterGame handlePlatform={(platform) => setSelectedPlatform(platform)} selectedPlatform={selectedPlatform}></FilterGame>
+        <GameGrid genre={selectedGenre} platform={selectedPlatform}></GameGrid>
       </GridItem>
     </Grid>
   );

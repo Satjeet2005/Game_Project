@@ -19,8 +19,8 @@ export interface GameProps {
 }
 
 
-const useGames = (genre : Genre | null) => {
-    const { data, error, isLoading} = useData<GameProps>('/games',{ params: { genres : genre?.id}}, [genre?.id]);
+const useGames = (genre : Genre | null,platform : PlatformProps | null) => {
+    const { data, error, isLoading} = useData<GameProps>('/games',{ params: { genres : genre?.id, platforms : platform?.id}}, [genre?.id,platform?.id]);
 
   return { data, error, isLoading };
 };
