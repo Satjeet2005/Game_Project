@@ -4,6 +4,7 @@ import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 import useData from "./useData";
 import { Genre } from "./useGenres";
+import { GameQuery } from "../App";
 
 export interface PlatformProps {
   id: number;
@@ -19,8 +20,8 @@ export interface GameProps {
 }
 
 
-const useGames = (genre : Genre | null,platform : PlatformProps | null) => {
-    const { data, error, isLoading} = useData<GameProps>('/games',{ params: { genres : genre?.id, platforms : platform?.id}}, [genre?.id,platform?.id]);
+const useGames = (gameQuery : GameQuery) => {
+    const { data, error, isLoading} = useData<GameProps>('/games',{ params: { genres : gameQuery.genre?.id, platforms : gameQuery.platform?.id}}, [gameQuery]);
 
   return { data, error, isLoading };
 };

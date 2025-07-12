@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Show, useSafeLayoutEffect } from "@chakra-ui/react";
 import NavBar from "./components/NavBar/NavBar";
 import GameGrid from "./components/GameGrid";
 import getImageUrl from "./services/image-url";
@@ -8,10 +8,15 @@ import { Genre } from "./hooks/useGenres";
 import FilterGame from "./components/FilterGame";
 import { PlatformProps } from "./hooks/useGames";
 
+
+export interface GameQuery{
+  genre : Genre | null,
+  platform : PlatformProps | null
+}
+
 function App() {
-  const [selectedGenre, setGenre] = useState<Genre | null>(null);
-  const [selectedPlatform,setSelectedPlatform] = useState<PlatformProps | null>(null)
-  
+  const [gameQuery,setGameQuery] = useState<GameQuery>({} as GameQuery)
+
   return (
     <Grid
       templateAreas={{
@@ -32,13 +37,13 @@ function App() {
         display={{ base: "none", lg: "block" }}
       >
         <GenreList
-          handleClick={(genre) => setGenre(genre)}
-          selectedGenre={selectedGenre}
+          handleClick={(genre) => setGameQuery({...gameQuery,genre})}
+          selectedGenre={gameQuery.genre}
         ></GenreList>
       </GridItem>
       <GridItem area="main" padding={10}>
-        <FilterGame handlePlatform={(platform) => setSelectedPlatform(platform)} selectedPlatform={selectedPlatform}></FilterGame>
-        <GameGrid genre={selectedGenre} platform={selectedPlatform}></GameGrid>
+        <FilterGame handlePlatform={(platform) => setGameQuery({...gameQuery,platform})} selectedPlatform={gameQuery.platform}></FilterGame>
+        <GameGrid gameQuery={gameQuery}></GameGrid>
       </GridItem>
     </Grid>
   );
