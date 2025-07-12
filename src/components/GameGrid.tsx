@@ -16,16 +16,14 @@ const GameGrid = ({ gameQuery } : Props) => {
 const { data, error,isLoading }  = useGames(gameQuery);
 
 const skeleton = [1,2,3,4,5,6];
+  if(error) return <Text color={"red"}>{error}</Text>;
   return (
-    <>
-    {error && <Text color={"red"}>{error}</Text>}
     <SimpleGrid columns={{sm : 1,md: 2,lg:3,xl:4}} gap={6} key={'kok'} mt="4">
         {isLoading && skeleton.map((s) => <GameCardContainer key={s}>
           <GameSkeleton></GameSkeleton>
         </GameCardContainer>)}
         {data.map((game) => <GameCardContainer key={game.id}><GameCard key={game.id} game={game}></GameCard></GameCardContainer>)}
     </SimpleGrid>
-    </>
   )
 }
 
