@@ -21,7 +21,7 @@ export interface GameProps {
 
 
 const useGames = (gameQuery : GameQuery) => {
-    const { data, error, isLoading} = useData<GameProps>('/games',{ params: { genres : gameQuery.genre?.id, platforms : gameQuery.platform?.id, ordering : gameQuery.ordering}}, [gameQuery]);
+    const { data, error, isLoading} = useData<GameProps>('/games',{ params: { genres : gameQuery.genre?.id, platforms : gameQuery.platform?.id, ordering : gameQuery.ordering, search : gameQuery.search}}, [gameQuery]);
 
   return { data, error, isLoading };
 };
